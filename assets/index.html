@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <title>Android Camera Server</title>
+    <script type="text/javascript">
+        var ws = new WebSocket("ws://" + location.host);
+        ws.onclose = function(event) {
+            console.log('onClose');
+            document.getElementById('screen').style.display = "none";
+            document.getElementById('closed').style.display = "inline";
+        };
+        ws.onopen = function(event) {
+            console.log('onOpen');
+        };
+        ws.onmessage = function(event) {
+            console.log('onMessage');
+            document.getElementById('screen').setAttribute('src', 'data:image/jpeg;base64,' + event.data);
+        };
+    </script>
+    <style type="text/css">
+    <!--
+        body {
+            background-image: url("bg_tile.png");
+            backgrond-repeat: repeat;
+        }
+        #content {
+            background-image: url("frame.png");
+            width: 720px;
+            height: 560px;
+            margin: auto;
+        }
+        #screen {
+            width: 490px;
+            height: 330px;
+            margin-left: 115px;
+            margin-top: 115px;
+        }
+        #closed {
+            width: 490px;
+            height: 330px;
+            margin-left: 115px;
+            margin-top: 115px;
+            display: none;
+        }
+    -->
+    </style>
+</head>
+<body>
+    <div id="content">
+        <img id="screen" src="frame_ready.png" />
+        <img id="closed" src="frame_off.png" />
+    </div>
+</html>

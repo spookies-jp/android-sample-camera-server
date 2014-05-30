@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ナルシストカメラ</string>
+    <string name="start_service">サーバ起動中</string>
+    <string name="preference_name">serverStarted</string>
+</resources>
